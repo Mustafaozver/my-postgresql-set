@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # PostgreSQL kurulumu
+
+curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add -
+sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/mantic pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
+
 sudo apt update
 sudo apt install -y postgresql postgresql-contrib
 
@@ -30,3 +34,7 @@ echo "Varsayılan kullanıcı 'postgres' ve şifresi '${POSTGRES_PASSWORD}' olar
 
 # PostgreSQL'e bağlantıyı doğrulama
 echo "psql -U postgres -h localhost -W"
+
+sudo apt install pgadmin4 pgadmin4-web -y
+
+sudo sh /usr/pgadmin4/bin/setup-web.sh
